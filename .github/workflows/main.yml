@@ -4,5 +4,13 @@ jobs:
   first-job:
     runs-on: ubuntu-latest
     steps:
-      - name: Run Project
-        run: echo "Testing Github Action Haha"
+      - name: Get Code
+        uses: actions/checkout@v3
+      - name: Install Nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run Tests
+        run: node server.js
